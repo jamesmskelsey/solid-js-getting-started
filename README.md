@@ -1,8 +1,8 @@
-## Usage
+## What this is
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+I heard about Solid.js and wanted to play with it. This is what I call a "kitchen sink app". I just use everything.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+It doesn't matter if it's good, or if it does anything. This is just how I learn. I play with every aspect of the framework, break it, fix it and so on. I highly recommend the method.
 
 ```bash
 $ npm install # or pnpm install or yarn install
