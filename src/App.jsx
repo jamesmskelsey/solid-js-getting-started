@@ -6,9 +6,7 @@ function App() {
   const [first, setFirst] = createSignal("JSON");
   const [last, setLast] = createSignal("Bourne");
 
-  createEffect(() => {
-    console.log("first name changed to", first());
-  });
+  const capitalName = (name) => name.toUpperCase();
 
   return (
     <div class={styles.App}>
@@ -27,7 +25,7 @@ function App() {
           />
         </div>
         <p>
-          Hello, {first} {last}
+          Hello, {capitalName(first())} {capitalName(last())}
         </p>
       </header>
     </div>
