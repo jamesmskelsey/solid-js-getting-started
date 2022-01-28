@@ -2,26 +2,23 @@ import logo from "./logo.svg";
 import styles from "./App.module.css";
 import {
   createSignal,
-  createEffect,
   createMemo,
   Show,
-  For,
-  Index,
   Switch,
 } from "solid-js";
 
 import NamesByIndex from "./components/NamesByIndex";
-import NamesByFor from "./components/NamesByFor";
+// import NamesByFor from "./components/NamesByFor";
 
 function App() {
   const [first, setFirst] = createSignal("JSON");
   const [last, setLast] = createSignal("Bourne");
   const [loggedIn, setLoggedIn] = createSignal(false);
-  const [names, setNames] = createSignal([
-    { id: 1, name: "James" },
-    { id: 2, name: "Ayako" },
-    { id: 3, name: "Aiden" },
-    { id: 4, name: "Mei" },
+  const [people, setPeople] = createSignal([
+    { id: 1, name: "James", age: 38 },
+    { id: 2, name: "Ayako", age: 21 },
+    { id: 3, name: "Aiden", age: 13 },
+    { id: 4, name: "Mei", age: 7 },
   ]);
 
   const capitalName = (name) => name.toUpperCase();
@@ -46,7 +43,7 @@ function App() {
   };
 
   const validName = () => {
-    return names()
+    return people()
       .reduce((a, b) => {
         return [...a, b.name.toLowerCase()];
       }, [])
@@ -84,7 +81,7 @@ function App() {
             </Show>
           </Match>
           <Match when={loggedIn()}>
-            <NamesByIndex names={names()} />
+            <NamesByIndex names={people()} />
             <button onClick={toggle}>Logout</button>
           </Match>
         </Switch>

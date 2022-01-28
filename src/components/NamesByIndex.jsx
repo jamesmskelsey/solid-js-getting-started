@@ -1,3 +1,5 @@
+import Index from "solid-js";
+
 const NamesByIndex = ({ names }) => {
   return (
     <>

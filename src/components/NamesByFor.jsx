@@ -1,3 +1,5 @@
+import For from 'solid-js';
+
 const NamesByFor = ({ names }) => {
   return (
     <>
