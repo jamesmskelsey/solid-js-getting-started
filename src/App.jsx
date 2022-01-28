@@ -7,7 +7,11 @@ import {
   Show,
   For,
   Index,
+  Switch,
 } from "solid-js";
+
+import NamesByIndex from "./components/NamesByIndex";
+import NamesByFor from "./components/NamesByFor";
 
 function App() {
   const [first, setFirst] = createSignal("JSON");
@@ -67,30 +71,23 @@ function App() {
               setFirst(e.target.value);
             }}
           />
+          <p>
+            {capitalName(first())} is{" "}
+            {validName() ? "a valid name" : "an invalid name"}
+          </p>
         </div>
-        <p>
-          {capitalName(first())} is{" "}
-          {validName() ? "a valid name" : "an invalid name"}
-        </p>
-        <Show when={validName() && !loggedIn()}>
-          <button onClick={toggle}>Login</button>
-        </Show>
-        <p>Using a For component.</p>
-        <For each={names()}>
-          {(name, i) => (
-            <p>
-              {i() + 1} {name.name}
-            </p>
-          )}
-        </For>
-        <p>Using an Index component.</p>
-        <Index each={names()}>
-          {(name, i) => (
-            <p>
-              {i + 1} {name().name}
-            </p>
-          )}
-        </Index>
+
+        <Switch>
+          <Match when={!loggedIn()}>
+            <Show when={validName() && !loggedIn()}>
+              <button onClick={toggle}>Login</button>
+            </Show>
+          </Match>
+          <Match when={loggedIn()}>
+            <NamesByIndex names={names()} />
+            <button onClick={toggle}>Logout</button>
+          </Match>
+        </Switch>
       </main>
     </div>
   );
